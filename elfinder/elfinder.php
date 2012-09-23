@@ -22,10 +22,10 @@ global $lang;
 $mkup_lang = $cfg['plugins_dir']."/elfinder/js/i18n/elfinder.$lang.js";
 
 // Load resources
-$mkup_skin = cot_rc('code_rc_css_file', array('url' => $cfg['plugins_dir'] . '/elrte/css/smoothness/jquery-ui-1.8.13.custom.css'));
+$mkup_skin = cot_rc('code_rc_css_file', array('url' => $cfg['plugins_dir'] . '/elrte/css/smoothness/jquery-ui-1.8.20.custom.css'));
 $mkup_theme = cot_rc('code_rc_css_file', array('url' => $cfg['plugins_dir'] . '/elfinder/css/elfinder.min.css'));
 $mkup_theme2 = cot_rc('code_rc_css_file', array('url' => $cfg['plugins_dir'] . '/elfinder/css/theme.css'));
-cot_rc_link_footer($cfg['plugins_dir'] . '/elrte/js/jquery-ui-1.8.13.custom.min.js');
+cot_rc_link_footer($cfg['plugins_dir'] . '/elrte/js/jquery-ui-1.8.20.custom.min.js');
 cot_rc_link_footer($cfg['plugins_dir'] . '/elfinder/js/elfinder.min.js');
 if (file_exists($mkup_lang))
 {
