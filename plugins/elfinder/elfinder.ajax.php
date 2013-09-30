@@ -35,7 +35,7 @@ if (cot_import('ckeditor', 'G', 'BOL'))
 	exit;
 }
 
-if ($cfg['plugin']['elfinder']['quotas'] && $usr['auth_write'])
+if ($cot_plugins_active['pfs'] && $cfg['plugin']['elfinder']['quotas'] && $usr['auth_write'])
 {
 	// Get limits for current user
 	$el_usr_limits = el_pfs_limits($usr['id']);
