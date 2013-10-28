@@ -154,7 +154,8 @@ function el_checkname($name)
 	{
 		return false;
 	}
-
+	// Actually not check folder names with file nane rules
+	if (cot_import('cmd','GET','ALP') == 'mkdir') return true;
 	// Apply extensions policy
 	if ($cfg['plugin']['elfinder']['filter'] == 'blacklist')
 	{
