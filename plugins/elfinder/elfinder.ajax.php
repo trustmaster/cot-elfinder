@@ -55,12 +55,12 @@ if ($usr['id'] > 0)
 	$el_roots[] = array(
 		'alias'			=> $L['Mypfs'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/',
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname',
-		'uploadMaxSize'	=> $cfg['plugin']['elfinder']['quotas'] ? $el_usr_limits[0].'K' : 0,
-		'disabled' 		=> (!$usr['auth_write'] || $cfg['plugin']['elfinder']['quotas'] && $el_pfs_size >= $el_usr_limits[1]) ? explode(' ', 'mkdir mkfile rename duplicate upload rm paste') : array()
+		'uploadMaxSize'	=> $cfg['plugin']['elfinder']['quotas'] && $cot_plugins_active['pfs'] ? $el_usr_limits[0].'K' : 0,
+		'disabled' 		=> (!$usr['auth_write'] || $cot_plugins_active['pfs'] && $cfg['plugin']['elfinder']['quotas'] && $el_pfs_size >= $el_usr_limits[1]) ? explode(' ', 'mkdir mkfile rename duplicate upload rm paste') : array()
 	);
 }
 
@@ -74,7 +74,7 @@ if ($usr['isadmin'])
 	$el_roots[] = array(
 		'alias'			=> $L['All'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/',
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname'
@@ -91,11 +91,11 @@ if ($cfg['plugin']['elfinder']['public'])
 	$el_roots[] = array(
 		'alias'			=> $L['Public'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/public/',
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/public/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/public/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname',
-		'uploadMaxSize'	=> $cfg['plugin']['elfinder']['quotas'] ? $el_usr_limits[0].'K' : 0,
+		'uploadMaxSize'	=> $cfg['plugin']['elfinder']['quotas'] && $cot_plugins_active['pfs'] ? $el_usr_limits[0].'K' : 0,
 		'disabled'		=> (!$usr['auth_write']) ? explode(' ', 'mkdir mkfile rename duplicate upload rm paste') : array()
 	);
 }
@@ -154,7 +154,8 @@ function el_checkname($name)
 	{
 		return false;
 	}
-
+	// Actually not check folder names with file nane rules
+	if (cot_import('cmd','GET','ALP') == 'mkdir') return true;
 	// Apply extensions policy
 	if ($cfg['plugin']['elfinder']['filter'] == 'blacklist')
 	{
