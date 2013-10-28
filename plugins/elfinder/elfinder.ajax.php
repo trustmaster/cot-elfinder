@@ -55,7 +55,7 @@ if ($usr['id'] > 0)
 	$el_roots[] = array(
 		'alias'			=> $L['Mypfs'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> str_replace('\\\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/'),
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/' . $usr['id'] . '/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname',
@@ -74,7 +74,7 @@ if ($usr['isadmin'])
 	$el_roots[] = array(
 		'alias'			=> $L['All'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> str_replace('\\\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/'),
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname'
@@ -91,7 +91,7 @@ if ($cfg['plugin']['elfinder']['public'])
 	$el_roots[] = array(
 		'alias'			=> $L['Public'],
 		'driver'		=> 'LocalFileSystem',
-		'path'			=> str_replace('\\\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/public/'),
+		'path'			=> str_replace('\\','/',getcwd() . '/' . $cfg['plugin']['elfinder']['folder'] . '/public/'),
 		'URL'			=> $sys['abs_url'] . $cfg['plugin']['elfinder']['folder'] . '/public/',
 		'accessControl' => 'el_access',
 		'acceptedName'	=> 'el_checkname',
