@@ -18,12 +18,14 @@
 	<!-- elFinder JS (REQUIRED) -->
 	<script type="text/javascript" src="{PHP.cfg.plugins_dir}/elfinder/js/elfinder.min.js"></script>
 
+	<!-- IF {PHP.lang} != 'en' -->
 	<!-- elFinder Locale -->
 	<script type="text/javascript" src="{PHP.cfg.plugins_dir}/elfinder/js/i18n/elfinder.{PHP.lang}.js"></script>
+	<!-- ENDIF -->
 
 	<!-- elFinder initialization (REQUIRED) -->
 	<script type="text/javascript" charset="utf-8">
-	// Helper function to get parameters from the query string.
+	/* Helper function to get parameters from the query string. */
 	function getUrlParam(paramName) {
 		var reParam = new RegExp('(?:[\?&]|&)' + paramName + '=([^&]+)', 'i') ;
 		var match = window.location.search.match(reParam) ;
@@ -37,7 +39,7 @@
 
 		var elf = $('#elfinder').elfinder({
 			lang: '{PHP.lang}',
-			url : 'index.php?r=elfinder&_ajax=1&x={PHP.sys.xk}&mode=' + mode,  // connector URL (REQUIRED)
+			url : 'index.php?r=elfinder&_ajax=1&x={PHP.sys.xk}&mode=' + mode, /* connector URL (REQUIRED) */
 			getFileCallback : function(file) {
 					window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
 					window.close();
